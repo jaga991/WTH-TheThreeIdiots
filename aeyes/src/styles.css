@@ -1,0 +1,32 @@
+.App {
+    font-family: sans-serif;
+  }
+  
+  ul {
+    margin: 0;
+  }
+  
+  span {
+    font-size: 2rem;
+    color: #777;
+  }
+  
+  .dropzone {
+    text-align: center;
+    padding: 20px;
+    border: 4px dashed #e89999;
+    background-color: #e3dfdf;
+    color: #572c2c;
+    width: 100%;
+    margin-top: 10px;
+
+  }
+  
+  .accept {
+    border-color: #107c10 !important;
+  }
+  
+  .reject {
+    border-color: #d83b01 !important;
+  }
+  
