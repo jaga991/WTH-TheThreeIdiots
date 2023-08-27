@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, send_file
 from gradio_client import Client
-from flask import Flask
 from flask_cors import CORS
 
 app = Flask(__name__)

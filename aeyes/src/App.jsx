@@ -1,9 +1,7 @@
 import { useState } from 'react'
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Button, Heading } from '@chakra-ui/react'
 import Dropzone from 'react-dropzone'
 import "./styles.css";
-
-
 
 function App() {
   const [fileNames, setFileNames] = useState([]);
@@ -11,7 +9,10 @@ function App() {
   const [oldCode, setOldCode] = useState("")
   const [newCode, setNewCode] = useState("")
   const [isButtonEnabled, setIsButtonEnabled] = useState(false)
+  const [msg, setMsg] = useState("Awaiting file upload")
   const handleDrop = async acceptedFiles => {
+    console.log(acceptedFiles)
+    setMsg("In Progress")
     try {
       const formData = new FormData();
       acceptedFiles.forEach(file => {
@@ -25,6 +26,7 @@ function App() {
       if (response.ok) {
         const data = await response.json(); // Parse the JSON response
         console.log(data)
+        setMsg(data.message)
       } else {
         console.error("File upload failed");
       }
@@ -53,7 +55,7 @@ function App() {
         // Create a temporary anchor element to trigger the download
         const a = document.createElement("a");
         a.href = url;
-        a.download = "filename.html"; // Set the desired filename and extension
+        a.download = "corrected.html"; // Set the desired filename and extension
         document.body.appendChild(a);
         a.click();
   
@@ -83,6 +85,7 @@ function App() {
       justifyContent="start"
       alignItems="center"
     >
+      <Heading>A-Eyes</Heading>
       <Box
         w="100vw"    // Set width to 100 viewport width
 
@@ -124,13 +127,15 @@ function App() {
           
       <Box
         w="100vw" 
-        backgroundColor="#133333"  // Example background color
-        border="2px solid white"
         display="flex"
-        flexDir="row"
-        justifyContent="start"
+        flexDir="column"
+        justifyContent="center"
         alignItems="center"
+        padding={10}
       >
+        <Box>
+          {msg}
+        </Box>
   <Button
     loadingText='Download'
     colorScheme='teal'
